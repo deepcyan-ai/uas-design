@@ -11,11 +11,11 @@ Language: C++
 1. Control System
    1. Classical Automatic Control Theory
    2. Modern Automatic Control Theory
-2. Propulsion System
-   4. Motor
-   5. ESC
-   6. Battery
-3. System Specification
+1. Propulsion System
+   1. Motor
+   1. ESC
+   1. Battery
+1. System Specification
    1. calculation for combining different components
 
 ## Testing framework
