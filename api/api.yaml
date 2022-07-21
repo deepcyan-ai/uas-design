@@ -43,7 +43,7 @@ components:
         - B_R_A
         - C_D
         - C_L
-        - C_d 
+        - C_dcs 
         - C_L_max
         - C 
         - E_B
@@ -59,12 +59,12 @@ components:
         - P_in
         - P_out
         - p_out___max
-        - R 
+        - R_p
         - R_a
         - r
         - S_w
         - T
-        - t
+        - tcs
         - V_F
         - V_in
         - V_l
@@ -83,7 +83,7 @@ components:
           format: float
           description: "battery_nenrgy_distribution"        
         B_I_0:
-          type: 
+          type: number
           format: float
           description: "no-load current parameter"
         B_K_V:
@@ -106,7 +106,7 @@ components:
           type: number
           format: float
           description: "vehicles lift coefficient"
-        C_d:
+        C_dcs:
           type: number
           format: float
           description: "blade cross- sectional drag cofficient"  
@@ -170,7 +170,7 @@ components:
           type: number
           format: float
           description: "maximum motor output power"
-        R:
+        R_p:
           type: number 
           format: float
           description: "propeller radius"
@@ -190,7 +190,7 @@ components:
           type: number
           format: float
           description: "thrust"
-        t:
+        tcs:
           type: number
           format: float
           description:  "cross sectional thickness"
@@ -223,8 +223,8 @@ components:
           format: float
           description: "propeller efficiency"
         n_P___ideal:
-          type: 
-          format: 
+          type: number
+          format: float
           description: "ideal propeller efficiency"
         n_S:
           type: number
@@ -243,7 +243,6 @@ components:
           format: float
           description:  "rotational speed"
     Error:
-      type:
       required: 
         - message 
       properties: 
