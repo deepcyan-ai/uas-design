@@ -6,106 +6,246 @@ info:
     name: MIT
 servers:
   - url: http://petstore.swagger.io/v1
+tags:
+  - parameter_set
 paths:
-  /pets:
-    get:
-      summary: List all pets
-      operationId: listPets
-      tags:
-        - pets
-      parameters:
-        - name: limit
-          in: query
-          description: How many items to return at one time (max 100)
-          required: false
-          schema:
-            type: integer
-            format: int32
-      responses:
-        '200':
-          description: A paged array of pets
-          headers:
-            x-next:
-              description: A link to the next page of responses
-              schema:
-                type: string
-          content:
-            application/json:    
-              schema:
-                $ref: "#/components/schemas/Pets"
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
+  /compute:
     post:
-      summary: Create a pet
-      operationId: createPets
+      summary: compute
+      operationId: compute
       tags:
-        - pets
+        - parameter_set 
+      requestBody: 
+        description:  "set of parameters" 
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ParameterSet"
       responses:
         '201':
-          description: Null response
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-  /pets/{petId}:
-    get:
-      summary: Info for a specific pet
-      operationId: showPetById
-      tags:
-        - pets
-      parameters:
-        - name: petId
-          in: path
-          required: true
-          description: The id of the pet to retrieve
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Expected response to a valid request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Pet"
-        default:
-          description: unexpected error
+          description: success
+        '400':
+          description: error
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
 components:
   schemas:
-    Pet:
+    ParameterSet:
       type: object
       required:
-        - id
-        - name
+        - B_E_a
+        - B_I_0
+        - B_K_V
+        - B_P___M
+        - B_R_A
+        - C_D
+        - C_L
+        - C_d 
+        - C_L_max
+        - C 
+        - E_B
+        - g
+        - K_V
+        - I_in
+        - I_0
+        - m_B
+        - m_M
+        - M_tip
+        - m_total
+        - m_0
+        - P_in
+        - P_out
+        - p_out___max
+        - R 
+        - R_a
+        - r
+        - S_w
+        - T
+        - t
+        - V_F
+        - V_in
+        - V_l
+        - V_st
+        - W_a
+        - n_D
+        - n_P
+        - n_P___ideal
+        - n_S
+        - p_a
+        - Q
+        - Z
       properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        tag:
-          type: string
-    Pets:
-      type: array
-      items:
-        $ref: "#/components/schemas/Pet"
+        B_E_a:
+          type: number
+          format: float
+          description: "battery_nenrgy_distribution"        
+        B_I_0:
+          type: 
+          format: float
+          description: "no-load current parameter"
+        B_K_V:
+          type: number
+          format: float
+          description: "motor speed-constant parameter"
+        B_P___M:
+          type: number
+          format: float
+          description: "maximum power-to-mass ratio"
+        B_R_A:
+          type: number
+          format: float
+          description: "internal-resitance parameter"
+        C_D:
+          type: number
+          format: float
+          description: "vehicles drag coefficient"
+        C_L:
+          type: number
+          format: float
+          description: "vehicles lift coefficient"
+        C_d:
+          type: number
+          format: float
+          description: "blade cross- sectional drag cofficient"  
+        C_L_max:
+          type: number
+          format: float
+          description: " vehicles max lift coefficient"
+        c:
+          type: number
+          format: float
+          description: "chord"
+        E_B:
+          type: number
+          format: float
+          description: "battery energy capacity"
+        g:
+          type: number
+          format: float
+          description: "gravity acceleration"
+        K_V:
+          type: number
+          format: float
+          description: "motor speed constant"
+        I_in:
+          type: number
+          format: float
+          description: "driver input current"
+        I_0:
+          type: number
+          format: float
+          description: "motor no-load current"
+        m_B:
+          type: number
+          format: float
+          description:  "battery-ack mass"
+        m_M:
+          type: number
+          format: float
+          description: "eletric motor mass"
+        M_tip:
+          type: number
+          format: float
+          description: "blade tip match memeber"
+        m_total:
+          type: number
+          format: float
+          description: "total vehicle mass"
+        m_0:
+          type: number
+          format: float
+          description: "vehocle mass without the propulsion system"
+        P_in:
+          type: number
+          format: float
+          description: "electric system input power"
+        P_out:
+          type: number 
+          format: float
+          description: "motor out power"
+        p_out___max:
+          type: number
+          format: float
+          description: "maximum motor output power"
+        R:
+          type: number 
+          format: float
+          description: "propeller radius"
+        R_a:
+          type: number
+          format: float
+          description: "motor ressistance"
+        r:
+          type: number
+          format: float
+          description: "radial coordinate"
+        S_w:
+          type: number
+          format: float
+          description: "wing area"
+        T:
+          type: number
+          format: float
+          description: "thrust"
+        t:
+          type: number
+          format: float
+          description:  "cross sectional thickness"
+        V_F:
+          type: number
+          format: float
+          description: "airspeed"
+        V_in:
+          type: number
+          format: float
+          description: "driver input voltage"
+        V_l:
+          type: number
+          format: float
+          description: "loitering airspeed"
+        V_st:
+          type: number
+          format: float
+          description:  "stall airspeed"
+        W_a:
+          type: number
+          format: float
+          description: "axial induced velocity"
+        n_D:
+          type: number 
+          format: float
+          description: "driver efficiency"
+        n_P:
+          type: number
+          format: float
+          description: "propeller efficiency"
+        n_P___ideal:
+          type: 
+          format: 
+          description: "ideal propeller efficiency"
+        n_S:
+          type: number
+          format: float
+          description: " electric system efficiency"
+        p_a:
+          type: number
+          format: float
+          description: "air density"
+        Q:
+          type: number
+          format: float
+          description: "maximum von Mises Stress"
+        Z:
+          type: number
+          format: float
+          description:  "rotational speed"
     Error:
-      type: object
-      required:
-        - code
-        - message
-      properties:
-        code:
-          type: integer
-          format: int32
+      type:
+      required: 
+        - message 
+      properties: 
         message:
           type: string
