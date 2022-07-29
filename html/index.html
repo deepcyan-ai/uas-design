@@ -1,6 +1,67 @@
 <html>
 <head>
 	<title>Drone Propulsion Calculator</title>
+	<!-- JS Includes -->
+    <script src="js/dist/bundle.js"></script> 
+
+	<!-- JS -->
+	<script>
+		// import SwaggerPetstore from 'swagger_petstore';
+
+		let apiInstance = new apiBundle.ParameterSetApi();
+		let parameterSet = new apiBundle.ParameterSet(); // ParameterSet | set of parameters
+
+		parameterSet.B_E_a = 0.0;
+		parameterSet.B_I_0 = 0.0;
+		parameterSet.B_K_V = 0.0;
+		parameterSet.B_P___M = 0.0;
+		parameterSet.B_R_A = 0.0;
+		parameterSet.C_D = 0.0;
+		parameterSet.C_L = 0.0;
+		parameterSet.C_dcs = 0.0;
+		parameterSet.C_L_max = 0.0;
+		parameterSet.E_B = 0.0;
+		parameterSet.g = 0.0;
+		parameterSet.K_V = 0.0;
+		parameterSet.I_in = 0.0;
+		parameterSet.I_0 = 0.0;
+		parameterSet.m_B = 0.0;
+		parameterSet.m_M = 0.0;
+		parameterSet.M_tip = 0.0;
+		parameterSet.m_total = 0.0;
+		parameterSet.m_0 = 0.0;
+		parameterSet.P_in = 0.0;
+		parameterSet.P_out = 0.0;
+		parameterSet.p_out___max = 0.0;
+		parameterSet.R_p = 0.0;
+		parameterSet.R_a = 0.0;
+		parameterSet.r = 0.0;
+		parameterSet.S_w = 0.0;
+		parameterSet.T = 0.0;
+		parameterSet.tcs = 0.0;
+		parameterSet.V_F = 0.0;
+		parameterSet.V_in = 0.0;
+		parameterSet.V_l = 0.0;
+		parameterSet.V_st = 0.0;
+		parameterSet.W_a = 0.0;
+		parameterSet.n_D = 0.0;
+		parameterSet.n_P = 0.0;
+		parameterSet.n_P___ideal = 0.0;
+		parameterSet.n_S = 0.0;
+		parameterSet.p_a = 0.0;
+		parameterSet.Q = 0.0;
+		parameterSet.Z = 0.0;
+		parameterSet.C = 0.0;
+
+		apiInstance.compute(parameterSet, (error, data, response) => {
+		  if (error) {
+		    console.error(error);
+		  } else {
+		    console.log('API called successfully:', response);
+		  }
+		});
+
+	</script>
 </head>
 <body>
 	<h1>Welcome</h1>

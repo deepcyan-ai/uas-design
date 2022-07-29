@@ -1,0 +1,292 @@
+openapi: 3.0.0
+info:
+  license:
+    name: MIT
+  title: Swagger Petstore
+  version: 1.0.0
+servers:
+- url: http://localhost:8080/v1
+tags: []
+paths:
+  /compute:
+    post:
+      operationId: compute
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParameterSet'
+        description: set of parameters
+        required: true
+      responses:
+        "201":
+          description: success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: error
+      summary: compute
+      tags:
+      - parameter_set
+      x-openapi-router-controller: openapi_server.controllers.parameter_set_controller
+components:
+  schemas:
+    ParameterSet:
+      example:
+        R_p: 8.762042
+        V_l: 6.878052
+        V_st: 5.9448957
+        M_tip: 1.1730742
+        n_S: 0.8851375
+        C_dcs: 9.301444
+        V_in: 6.778325
+        m_total: 4.9652185
+        C_D: 2.302136
+        E_B: 4.145608
+        B_P___M: 5.962134
+        S_w: 3.5571952
+        P_out: 9.36931
+        C_L_max: 3.6160767
+        n_P___ideal: 7.143538
+        C_L: 7.0614014
+        P_in: 9.965781
+        Q: 6.519181
+        p_a: 7.05877
+        T: 6.965118
+        B_R_A: 5.637377
+        Z: 0.10263654
+        V_F: 2.8841622
+        m_0: 5.025005
+        c: 2.027123
+        K_V: 1.2315135
+        B_E_a: 0.8008282
+        tcs: 1.284659
+        g: 7.386282
+        B_K_V: 1.4658129
+        m_B: 6.846853
+        r: 6.4384236
+        n_D: 3.3531933
+        B_I_0: 6.0274563
+        R_a: 9.018348
+        W_a: 6.704019
+        I_in: 1.0246457
+        m_M: 7.4577446
+        I_0: 1.4894159
+        n_P: 3.0937452
+        p_out___max: 6.6835623
+      properties:
+        B_E_a:
+          description: battery_nenrgy_distribution
+          format: float
+          type: number
+        B_I_0:
+          description: no-load current parameter
+          format: float
+          type: number
+        B_K_V:
+          description: motor speed-constant parameter
+          format: float
+          type: number
+        B_P___M:
+          description: maximum power-to-mass ratio
+          format: float
+          type: number
+        B_R_A:
+          description: internal-resitance parameter
+          format: float
+          type: number
+        C_D:
+          description: vehicles drag coefficient
+          format: float
+          type: number
+        C_L:
+          description: vehicles lift coefficient
+          format: float
+          type: number
+        C_dcs:
+          description: blade cross- sectional drag cofficient
+          format: float
+          type: number
+        C_L_max:
+          description: ' vehicles max lift coefficient'
+          format: float
+          type: number
+        c:
+          description: chord
+          format: float
+          type: number
+        E_B:
+          description: battery energy capacity
+          format: float
+          type: number
+        g:
+          description: gravity acceleration
+          format: float
+          type: number
+        K_V:
+          description: motor speed constant
+          format: float
+          type: number
+        I_in:
+          description: driver input current
+          format: float
+          type: number
+        I_0:
+          description: motor no-load current
+          format: float
+          type: number
+        m_B:
+          description: battery-ack mass
+          format: float
+          type: number
+        m_M:
+          description: eletric motor mass
+          format: float
+          type: number
+        M_tip:
+          description: blade tip match memeber
+          format: float
+          type: number
+        m_total:
+          description: total vehicle mass
+          format: float
+          type: number
+        m_0:
+          description: vehocle mass without the propulsion system
+          format: float
+          type: number
+        P_in:
+          description: electric system input power
+          format: float
+          type: number
+        P_out:
+          description: motor out power
+          format: float
+          type: number
+        p_out___max:
+          description: maximum motor output power
+          format: float
+          type: number
+        R_p:
+          description: propeller radius
+          format: float
+          type: number
+        R_a:
+          description: motor ressistance
+          format: float
+          type: number
+        r:
+          description: radial coordinate
+          format: float
+          type: number
+        S_w:
+          description: wing area
+          format: float
+          type: number
+        T:
+          description: thrust
+          format: float
+          type: number
+        tcs:
+          description: cross sectional thickness
+          format: float
+          type: number
+        V_F:
+          description: airspeed
+          format: float
+          type: number
+        V_in:
+          description: driver input voltage
+          format: float
+          type: number
+        V_l:
+          description: loitering airspeed
+          format: float
+          type: number
+        V_st:
+          description: stall airspeed
+          format: float
+          type: number
+        W_a:
+          description: axial induced velocity
+          format: float
+          type: number
+        n_D:
+          description: driver efficiency
+          format: float
+          type: number
+        n_P:
+          description: propeller efficiency
+          format: float
+          type: number
+        n_P___ideal:
+          description: ideal propeller efficiency
+          format: float
+          type: number
+        n_S:
+          description: ' electric system efficiency'
+          format: float
+          type: number
+        p_a:
+          description: air density
+          format: float
+          type: number
+        Q:
+          description: maximum von Mises Stress
+          format: float
+          type: number
+        Z:
+          description: rotational speed
+          format: float
+          type: number
+      required:
+      - B_E_a
+      - B_I_0
+      - B_K_V
+      - B_P___M
+      - B_R_A
+      - C
+      - C_D
+      - C_L
+      - C_L_max
+      - C_dcs
+      - E_B
+      - I_0
+      - I_in
+      - K_V
+      - M_tip
+      - P_in
+      - P_out
+      - Q
+      - R_a
+      - R_p
+      - S_w
+      - T
+      - V_F
+      - V_in
+      - V_l
+      - V_st
+      - W_a
+      - Z
+      - g
+      - m_0
+      - m_B
+      - m_M
+      - m_total
+      - n_D
+      - n_P
+      - n_P___ideal
+      - n_S
+      - p_a
+      - p_out___max
+      - r
+      - tcs
+      type: object
+    Error:
+      properties:
+        message:
+          type: string
+      required:
+      - message
