@@ -1,0 +1,4 @@
+site_name: UAS Design
+nav:
+  - Home: index.md
+theme: pulse
