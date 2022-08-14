@@ -1,9 +1,12 @@
-<html>
-	<head>
-		<title>Drone Propulsion Calculator</title>
-		<!-- JS Includes -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0">
+        <title>Ecalc Recreation</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <link rel="stylesheet" href="bootstrapoverride.css">
 		<script src="js/dist/bundle.js"></script> 
-
 		<!-- JS -->
 		<script>
 			// import SwaggerPetstore from 'swagger_petstore';
@@ -76,8 +79,249 @@
 			});
 
 		</script>
-	</head>
-	<body>
-		<h1>Welcome</h1>
-	</body>
+    </head>
+    <body>
+        <table class="table table-striped" style="margin-left:auto; margin-right:auto; width:1500px; margin-top:10px; border:1px solid">
+            <thead style="border: 1px-solid">&nbsp;</thead>
+            <tr style="white-space:pre-line">
+                <td><b>General</b></td>
+                <td style="width:200px">Model Weight:
+                    <input type="text" value="850" id="model-weight" style="width:50px"> <label for="model-weight">g &nbsp;</label> <select name="incldrive">
+                        <option value="drive">incl. drive</option>
+                        <option value="nobattery">w/o Battery</option>
+                        <option value="nodrive">w/o Drive</option>
+                    </select>
+                    <input type="text" value="30" name="model-weight-oz" style="width:50px"> <label for="model-weight-oz">oz</label>
+                </td>
+                <td></td>
+                <td># of Rotors:
+                    <input type="text" name="rotors-number" value="4" style="width:100px" id="name">
+                    <select name="rotorsconfig">
+                        <option value="flat">flat</option>
+                        <option value="coaxial">coaxial</option>
+                    </select>
+                </td>
+                <td>Frame Size:
+                    <input type="text" value="400" name="frame-size" style="width:100px"> <label for="frame-size">mm</label>
+                    <input type="text" value="15.75" name="frame-size-inch" style="width:100px"> <label for="frame-size-inch">inch</label>
+                </td>
+                <td>FCU Tilt Limit:
+                    <select name="tiltlimit">
+                        <option value="nolimit">no limit</option>
+                        <option value="10">10&#176</option>
+                        <option value="20">20&#176</option>
+                        <option value="25">25&#176</option>
+                        <option value="30">30&#176</option>
+                        <option value="35">35&#176</option>
+                        <option value="40">40&#176</option>
+                        <option value="45">45&#176</option>
+                        <option value="50">50&#176</option>
+                        <option value="55">55&#176</option>
+                        <option value="60">60&#176</option>
+                        <option value="65">65&#176</option>
+                        <option value="70">70&#176</option>
+                        <option value="75">75&#176</option>
+                        <option value="80">80&#176</option>
+                    </select>
+                </td>
+                <td></td>
+                <td>Field Elevation:
+                    <input type="text" value="500" name="field-elevation" style="width:70px"> <label for="field-elevation">m.ASL</label>
+                    <input type="text" value="1640" name="field-elevation-feet" style="width:70px"> <label for="field-elevation-feet">ft.ASL</label>
+                </td>
+                <td style="width: 120px">Air Temperature:
+                    <input type="text" value="25" name="air-temp" style="width:50px"> <label for="air-temp">&#176C</label>
+                    <input type="text" value="77" name="air-temp-fahrenheit" style="width:50px"> <label for="air-temp-fahrenheit">&#176F</label>
+                </td>
+                <td>Pressure (QNH):
+                    <input type="text" value="1013" name="pressure" style="width:100px"> <label for="pressure">hPa</label>
+                    <input type="text" value="29.91" name="pressure-alt" style="width:100px"> <label for="pressure-alt">inHg</label>
+                </td>
+            </tr>
+            <tr style="white-space:pre-line">
+                <td><b>Battery Cell</b></td>
+                <td style="width:409px">Type (Cont. / max. C) - charge state:
+                    <select name="batterytype" id="batterytype" style="width: 300px" onchange="batteryfill(this);">
+                        <option value="" selected hidden disabled>Select battery type here...</option>
+                        <option value="type1" id="b-1">Battery 1</option>
+                        <option value="type2" id="b-2">Battery 2</option>
+                        <option value="type3" id="b-3">Battery 3</option>
+                    </select> - <select name="batterycharge">
+                        <option value="full">full</option>
+                        <option value="normal" selected>normal</option>
+                        <option value="low">low</option>
+                    </select>
+                    
+                </td>
+                <td></td>
+                <td style="width: 175px">Configuration:
+                    <input type="text" value="3" name="s" style="width:25px"> <label for="s">S</label> <input type="text" value="1" id="p" name = "p" style="width:60px"> <label for="p">P</label>
+                </td>
+                <td style="width: 175px">Cell Capacity:
+                    <input type="text" name="cell-capacity" id="cell-capacity" style="width:70px; background-color: rgb(225, 221, 221);" readonly><label for="cell-capacity">&nbsp;mAh</label>
+                    <input type="text" name="cell-capacity-total" id="cell-capacity-total" style="width:70px; background-color: rgb(225, 221, 221);" readonly> <label for="cell-capacity-total">mAh total</label>
+                </td>
+                <td>Max. Discharge:
+                    <select name="discharge">
+                        <option value="10">10%</option>
+                        <option value="15">15%</option>
+                        <option value="20">20%</option>
+                        <option value="25">25%</option>
+                        <option value="30">30%</option>
+                        <option value="35">35%</option>
+                        <option value="40">40%</option>
+                        <option value="45">45%</option>
+                        <option value="50">50%</option>
+                        <option value="55">55%</option>
+                        <option value="60">60%</option>
+                        <option value="65">65%</option>
+                        <option value="70">70%</option>
+                        <option value="75">75%</option>
+                        <option value="80">80%</option>
+                        <option value="85" selected>85%</option>
+                        <option value="90">90%</option>
+                        <option value="95">95%</option>
+                        <option value="100">100%</option>
+                    </select>
+                </td>
+                <td style="width: 150px">Resistance:
+                    <input type="text" id="battery-resistance" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="battery-resistance">Ohm</label>
+                </td>
+                <td style="width: 150px">Voltage: 
+                    <input type="text" name="voltage" id="voltage" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="voltage">V</label>
+                </td>
+                <td>C-Rate:
+                    <input type="text" name="c-cont" id="c-cont" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="c-cont">C cont.</label>
+                    <input type="text" name="c-max" id="c-max" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="c-max">C max.</label>
+                </td>
+                <td>Weight:
+                    <input type="text" name="b-weight" id="b-weight" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="b-weight">g</label>
+                    <input type="text" name="b-weight-oz" id="b-weight-oz" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="b-weight-oz">oz</label>
+                 </td>
+            </tr>
+            <tr style="white-space:pre-line">
+                <td><b>Controller</b></td>
+                <td>Type:
+                    <select name="controller-type" id="controllertype" style="width: 300px" onchange="controllerfill(this);">
+                        <option value="" selected disabled hidden>Select controller type...</option>
+                        <option value="type1">Type 1</option>
+                        <option value="type2">Type 2</option>
+                        <option value="type3">Type 3</option>
+                    </select>
+                </td>
+                <td></td>
+                <td style="width: 175px">Current:
+                    <input type="text" name="a-cont" id="a-cont" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="a-cont">A cont.</label>
+                    <input type="text" name="a-max" id="a-max"  style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="a-max">A max.</label>
+                </td>
+                <td style="width: 150px">Resistance:
+                    <input type="text" name="controller-resistance" id="controller-resistance" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="controller-resistance">Ohm</label>
+                </td>
+                <td style="width: 150px">Weight:
+                    <input type="text" name="c-weight" id="c-weight" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="c-weight">g</label>
+                    <input type="text" name="c-weight-oz" id="c-weight-oz" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="c-weight-oz">oz</label>
+                </td>
+                <td></td>
+                <td><b>Accessories</b></td>
+                <td>Current drain:
+                    <input type="text" value="0" name="current-drain" style="width:60px;"> <label for="current-drain">A</label>
+                </td>
+                <td>Weight:
+                    <input type="text" name="a-weight" value="0" style="width:60px;"> <label for="a-weight">g</label>
+                    <input type="text" name="a-weight-oz" value="0" style="width:60px;"> <label for="a-weight-oz">oz</label>
+                </td>
+            </tr>
+            <tr style="white-space:pre-line">
+                <td><b>Motor</b></td>
+                <td>Manufacturer - Type (Kv) - Cooling:
+                    <select name="motor-manufacturer" onchange="motorfill(this);">
+                        <option value="" selected hidden disabled>Select motor manufacturer...</option>
+                        <option value="manu-1">Type1</option>
+                        <option value="manu-2">Type2</option>
+                        <option value="manu-3">Type3</option>
+                    </select> - <select name="motor-type">
+                        <option value="" selected hidden disabled>Select type...</option>
+                        <option value="manu-type1"></option>
+                    </select>
+                    <select name="cooling">
+                        <option value="excellent">Excellent</option>
+                        <option value="good" selected>Good</option>
+                        <option value="medium">Medium</option>
+                        <option value="poor">Poor</option>
+                        <option value="very-poor">Very poor</option>
+                    </select>
+                </td>
+                <td></td>
+                <td style="width: 175px">KV (w/o torque):
+                    <input type="text" name="rpm" id="rpm" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="rpm">rpm/V</label>
+                </td>
+                <td style="width: 175px">no-load Current:
+                    <input type="text" name="NLCA" id="NLCA" style="width:50px; background-color: rgb(225, 221, 221);" readonly> <label for="NLCA">A@</label> <input type="text" name="NLCV" id="NLCV" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="NLCV">V</label>
+                </td>
+                <td>Limit (up to 15s):
+                    <input type="text" name="limit" id="limit" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="limit">W</label>
+                </td>
+                <td style="width: 150px">Resistance:
+                    <input type="text" name="motor-resistance" id="motor-resistance" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="controller-resistance">Ohm</label>
+                </td>
+                <td>Case Length:
+                    <input type="text" name="cl-mm" id="cl-mm" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="cl-mm">mm</label>
+                    <input type="text" name="cl-inch" id="cl-inch" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="cl-inch">inch</label>
+                </td>
+                <td># mag. Poles:
+                    <input type="text" name="magpoles" id="magpoles" style="width:60px; background-color: rgb(225, 221, 221);" readonly>
+                </td>
+                <td>Weight:
+                    <input type="text" name="m-weight" id="m-weight" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="m-weight">g</label>
+                    <input type="text" name="m-weight-oz" id="m-weight-oz" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="m-weight-oz">oz</label>
+                </td>
+            </tr>
+            <tr style="white-space:pre-line">
+                <td><b>Propeller</b></td>
+                <td>Type - Yoke Twist:
+                    <select name="propeller-type" id="propeller-type">
+                        <option value="" selected hidden disabled>Select propeller type...</option>
+                        <option value="Propeller 1" id="prop1">Propeller 1</option>
+                        <option value="Propeller 2" id="prop2">Propeller 2</option>
+                        <option value="Propeller 3" id="prop3">Propeller 3</option>
+                    </select> - <select name="yoke-twist" id="yoke-twist">
+                        <option value="7.0">+7.0&#176</option>
+                        <option value="6.0">+6.0&#176</option>
+                        <option value="5.0">+5.0&#176</option>
+                        <option value="4.0">+4.0&#176</option>
+                        <option value="3.5">+3.5&#176</option>
+                        <option value="3.0">+3.0&#176</option>
+                        <option value="2.5">+2.5&#176</option>
+                        <option value="2.0">+2.0&#176</option>
+                        <option value="0" selected>0&#176</option>
+                        <option value="-2.5">-2.5&#176</option>
+                        <option value="-5.0">-5.0&#176</option>
+                        <option value="-7.0">-7.0&#176</option>
+                    </select>
+                </td>
+                <td></td>
+                <td style="width: 175px">Diameter:
+                    <input type="text" name="dia-inch" value="10" style="width:60px;"> <label for="dia-inch">inch</label>
+                    <input type="text" name="dia-mm" value="254" style="width:60px;"> <label for="dia-mm">mm</label>
+                </td>
+                <td style="width: 150px">Pitch:
+                    <input type="text" name="pitch-inch" value="4.7" style="width:60px;"> <label for="pitch-inch">inch</label>
+                    <input type="text" name="pitch-mm" value="119" style="width:60px;"> <label for="pitch-mm">mm</label>
+                </td>
+                <td># Blades:
+                    <input type="text" name="no-blades" value="2" style="width:60px;">
+                </td>
+                <td>PConst / TConst:
+                    <input type="text" name="p-const" value="1.2" style="width:60px;">&nbsp;/&nbsp;<input type="text" name="t-const" value="1.0" style="width:60px;">
+                </td>
+                <td>Gear Ratio:
+                    <input type="text" name="gear-ratio" value="1" style="width:60px;">&nbsp;:&nbsp; 1
+                </td>
+                <td></td>
+                <td><input type="submit" value="Submit" style="margin-top:15px"></td>
+            </tr>
+        </table>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous" ></script>
+        <script type="text/javascript" src="scripts.js" ></script>
+    </body>
 </html>
