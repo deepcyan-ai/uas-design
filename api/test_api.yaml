@@ -1,0 +1,235 @@
+openapi: 3.0.0
+info:
+  title: User entity service
+  description: CRUD API Example project with swagger docs
+  contact:
+    name: Ivan Ovsyanochka
+    url: https://oatpp.io/
+  license:
+    name: Apache License, Version 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+  - url: http://localhost:8000
+    description: server on localhost
+paths:
+  /users:
+    post:
+      summary: Create new User
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusDto'
+      parameters: []
+  /users/{userId}:
+    get:
+      summary: Get one User by userId
+      operationId: getUserById
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusDto'
+      parameters:
+        - name: userId
+          description: User Identifier
+          in: path
+          required: true
+          deprecated: false
+          schema:
+            type: integer
+            minimum: -2147483648
+            maximum: 2147483647
+    put:
+      summary: Update User by userId
+      operationId: putUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusDto'
+      parameters:
+        - name: userId
+          description: User Identifier
+          in: path
+          required: true
+          deprecated: false
+          schema:
+            type: integer
+            minimum: -2147483648
+            maximum: 2147483647
+    delete:
+      summary: Delete User by userId
+      operationId: deleteUser
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusDto'
+      parameters:
+        - name: userId
+          description: User Identifier
+          in: path
+          required: true
+          deprecated: false
+          schema:
+            type: integer
+            minimum: -2147483648
+            maximum: 2147483647
+  /users/offset/{offset}/limit/{limit}:
+    get:
+      summary: get all stored users
+      operationId: getUsers
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersPageDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusDto'
+      parameters:
+        - name: offset
+          in: path
+          required: true
+          deprecated: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 4294967295
+        - name: limit
+          in: path
+          required: true
+          deprecated: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 4294967295
+components:
+  schemas:
+    StatusDto:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Short status text
+        code:
+          type: integer
+          description: Status code
+          minimum: -2147483648
+          maximum: 2147483647
+        message:
+          type: string
+          description: Verbose message
+      required: []
+    Role_String:
+      type: string
+      enum:
+        - ROLE_GUEST
+        - ROLE_ADMIN
+    UsersPageDto:
+      type: object
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+        limit:
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+        count:
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDto'
+      required: []
+    UserDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          minimum: -2147483648
+          maximum: 2147483647
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        role:
+          $ref: '#/components/schemas/Role_String'
+      required: []
+

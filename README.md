@@ -22,3 +22,56 @@ Language: C++
 
 TBD
 
+# Building
+
+## Download OpenAPI Generator
+
+```
+wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/6.0.1/openapi-generator-cli-6.0.1.jar -O ~/Applications/openapi-generator-cli.jar
+```
+
+## Generate API for JS
+
+```
+cd api
+make
+```
+
+## Generate JS Bundle
+
+```
+cd html/js
+npm install
+npm run build
+./node_modules/.bin/browserify --standalone apiBundle dist/index.js > dist/bundle.js
+```
+
+## Build Backend CPP Server
+
+Dependencies must be installed (see [this for more details](./backend-cpp/README.md)
+
+1. `oatpp`
+1. `oatpp-sqlite`
+1. `oatpp-swagger`
+
+```
+cd backend-cpp
+mkdir build
+cd build
+cmake ..
+cmake --build .
+```
+
+Run Backend Server
+
+```
+cd backend-cpp
+./crud-exe
+```
+
+Run Frontend Server
+
+```
+cd html
+python3 serve.py
+```
