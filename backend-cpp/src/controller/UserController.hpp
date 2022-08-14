@@ -27,6 +27,21 @@ class UserController : public oatpp::web::server::api::ApiController {
     return std::make_shared<UserController>(objectMapper);
   }
 
+  ENDPOINT_INFO(compute) {
+    info->summary = "Compute";
+
+    info->addConsumes<Object<ParameterSetDto>>("application/json");
+
+    info->addResponse<Object<ParameterSetDto>>(Status::CODE_200, "application/json");
+    info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
+    info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
+  }
+  ADD_CORS(compute)
+  ENDPOINT("POST", "compute", compute,
+           BODY_DTO(Object<ParameterSetDto>, parameterSetDto)) {
+    return createDtoResponse(Status::CODE_200, m_userService.compute(parameterSetDto));
+  }
+
   ENDPOINT_INFO(createUser) {
     info->summary = "Create new User";
 

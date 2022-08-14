@@ -8,11 +8,41 @@ info:
   license:
     name: Apache License, Version 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0
-  version: '1.0'
+  version: '1.0.0'
 servers:
   - url: http://localhost:8000
     description: server on localhost
 paths:
+  /compute:
+    post:
+      summary: Compute
+      operationId: compute
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParameterSetDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterSetDto'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusDto'
+      parameters: []
   /users:
     post:
       summary: Create new User
@@ -176,6 +206,133 @@ paths:
             maximum: 4294967295
 components:
   schemas:
+    ParameterSetDto:
+      type: object
+      properties:
+        B_E_a:
+          type: number
+          format: float
+        B_I_0:
+          type: number
+          format: float
+        B_K_V:
+          type: number
+          format: float
+        B_P___M:
+          type: number
+          format: float
+        B_R_A:
+          type: number
+          format: float
+        C_D:
+          type: number
+          format: float
+        C_L:
+          type: number
+          format: float
+        C_dcs:
+          type: number
+          format: float
+        C_L_max:
+          type: number
+          format: float
+        E_B:
+          type: number
+          format: float
+        g:
+          type: number
+          format: float
+        K_V:
+          type: number
+          format: float
+        I_in:
+          type: number
+          format: float
+        I_0:
+          type: number
+          format: float
+        m_B:
+          type: number
+          format: float
+        m_M:
+          type: number
+          format: float
+        M_tip:
+          type: number
+          format: float
+        m_total:
+          type: number
+          format: float
+        m_0:
+          type: number
+          format: float
+        P_in:
+          type: number
+          format: float
+        P_out:
+          type: number
+          format: float
+        p_out___max:
+          type: number
+          format: float
+        R_p:
+          type: number
+          format: float
+        R_a:
+          type: number
+          format: float
+        r:
+          type: number
+          format: float
+        S_w:
+          type: number
+          format: float
+        T:
+          type: number
+          format: float
+        tcs:
+          type: number
+          format: float
+        V_F:
+          type: number
+          format: float
+        V_in:
+          type: number
+          format: float
+        V_l:
+          type: number
+          format: float
+        V_st:
+          type: number
+          format: float
+        W_a:
+          type: number
+          format: float
+        n_D:
+          type: number
+          format: float
+        n_P:
+          type: number
+          format: float
+        n_P___ideal:
+          type: number
+          format: float
+        n_S:
+          type: number
+          format: float
+        p_a:
+          type: number
+          format: float
+        Q:
+          type: number
+          format: float
+        Z:
+          type: number
+          format: float
+        C:
+          type: number
+          format: float
+      required: []
     StatusDto:
       type: object
       properties:
