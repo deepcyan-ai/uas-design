@@ -56,6 +56,53 @@
 			ps.Z = 0.0;
 			ps.C = 0.0;
 
+            function values() {
+                ps.B_E_a = document.getElementById("B_E_a");
+                ps.B_I_0 = document.getElementById("");
+                ps.B_K_V = document.getElementById("");
+                ps.B_P___M = document.getElementById("");
+                ps.B_R_A = document.getElementById("B_R_A");
+                ps.C_D = document.getElementById("");
+                ps.C_L = document.getElementById("");
+                ps.C_dcs = document.getElementById("");
+                ps.C_L_max = document.getElementById("");
+                ps.E_B = document.getElementById("E_B");
+                ps.g = 9.807;
+                ps.K_V = document.getElementById("K_V");
+                ps.I_in = document.getElementById("I_in");
+                ps.I_0 = document.getElementById("I_0");
+                ps.m_B = document.getElementById("m_B");
+                ps.m_M = document.getElementById("m_M");
+                ps.M_tip = document.getElementById("");
+                ps.m_total = document.getElementById("");
+                ps.m_0 = document.getElementById("");
+                ps.P_in = /* parseInt(document.getElementById("voltage")) * parseInt(document.getElementById("c-cont"))/*/ 0.0;
+                ps.P_out = document.getElementById("");
+                ps.p_out___max = document.getElementById("limit");
+                ps.R_p = parseInt(document.getElementById("D_p")) / 2.0;
+                ps.R_a = document.getElementById("R_a");
+                ps.r = document.getElementById("");
+                ps.S_w = document.getElementById("");
+                ps.T = document.getElementById("T");
+                ps.tcs = document.getElementById("");
+                ps.V_F = document.getElementById("");
+                ps.V_in = document.getElementById("V_in");
+                ps.V_l = document.getElementById("");
+                ps.V_st = document.getElementById("");
+                ps.W_a = document.getElementById("");
+                ps.n_D = document.getElementById("");
+                ps.n_P = document.getElementById("");
+                ps.n_P___ideal = document.getElementById("");
+                ps.n_S = document.getElementById("");
+                ps.p_a = document.getElementById("");
+                ps.Q = document.getElementById("");
+                ps.Z = document.getElementById("");
+                ps.C = document.getElementById("");
+            }
+
+            submit = document.getElementById("submit");
+            subtmit.addEventListener('click', values);
+
 			apiInstance.compute(ps, (error, data, response) => {
 				if (error) {
 					console.error(error);
@@ -145,7 +192,6 @@
                         <option value="normal" selected>normal</option>
                         <option value="low">low</option>
                     </select>
-                    
                 </td>
                 <td></td>
                 <td style="width: 175px">Configuration:
@@ -153,7 +199,7 @@
                 </td>
                 <td style="width: 175px">Cell Capacity:
                     <input type="text" name="cell-capacity" id="cell-capacity" style="width:70px; background-color: rgb(225, 221, 221);" readonly><label for="cell-capacity">&nbsp;mAh</label>
-                    <input type="text" name="cell-capacity-total" id="cell-capacity-total" style="width:70px; background-color: rgb(225, 221, 221);" readonly> <label for="cell-capacity-total">mAh total</label>
+                    <input type="text" name="cell-capacity-total" id="E_B" style="width:70px; background-color: rgb(225, 221, 221);" readonly> <label for="cell-capacity-total">mAh total</label>
                 </td>
                 <td>Max. Discharge:
                     <select name="discharge">
@@ -179,7 +225,7 @@
                     </select>
                 </td>
                 <td style="width: 150px">Resistance:
-                    <input type="text" id="battery-resistance" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="battery-resistance">Ohm</label>
+                    <input type="text" id="B_R_A" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="battery-resistance">Ohm</label>
                 </td>
                 <td style="width: 150px">Voltage: 
                     <input type="text" name="voltage" id="voltage" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="voltage">V</label>
@@ -189,7 +235,7 @@
                     <input type="text" name="c-max" id="c-max" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="c-max">C max.</label>
                 </td>
                 <td>Weight:
-                    <input type="text" name="b-weight" id="b-weight" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="b-weight">g</label>
+                    <input type="text" name="b-weight" id="m_B" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="b-weight">g</label>
                     <input type="text" name="b-weight-oz" id="b-weight-oz" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="b-weight-oz">oz</label>
                  </td>
             </tr>
@@ -206,7 +252,7 @@
                 <td></td>
                 <td style="width: 175px">Current:
                     <input type="text" name="a-cont" id="a-cont" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="a-cont">A cont.</label>
-                    <input type="text" name="a-max" id="a-max"  style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="a-max">A max.</label>
+                    <input type="text" name="a-max" id="I_in"  style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="a-max">A max.</label>
                 </td>
                 <td style="width: 150px">Resistance:
                     <input type="text" name="controller-resistance" id="controller-resistance" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="controller-resistance">Ohm</label>
@@ -215,7 +261,9 @@
                     <input type="text" name="c-weight" id="c-weight" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="c-weight">g</label>
                     <input type="text" name="c-weight-oz" id="c-weight-oz" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="c-weight-oz">oz</label>
                 </td>
-                <td></td>
+                <td>Input voltage:
+                    <input type="text" id="V_in" style="width:60px;"> V
+                </td>
                 <td><b>Accessories</b></td>
                 <td>Current drain:
                     <input type="text" value="0" name="current-drain" style="width:60px;"> <label for="current-drain">A</label>
@@ -247,16 +295,16 @@
                 </td>
                 <td></td>
                 <td style="width: 175px">KV (w/o torque):
-                    <input type="text" name="rpm" id="rpm" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="rpm">rpm/V</label>
+                    <input type="text" name="rpm" id="K_V" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="rpm">rpm/V</label>
                 </td>
                 <td style="width: 175px">no-load Current:
-                    <input type="text" name="NLCA" id="NLCA" style="width:50px; background-color: rgb(225, 221, 221);" readonly> <label for="NLCA">A@</label> <input type="text" name="NLCV" id="NLCV" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="NLCV">V</label>
+                    <input type="text" name="NLCA" id="I_0" style="width:50px; background-color: rgb(225, 221, 221);" readonly> <label for="NLCA">A@</label> <input type="text" name="NLCV" id="NLCV" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="NLCV">V</label>
                 </td>
                 <td>Limit (up to 15s):
                     <input type="text" name="limit" id="limit" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="limit">W</label>
                 </td>
                 <td style="width: 150px">Resistance:
-                    <input type="text" name="motor-resistance" id="motor-resistance" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="controller-resistance">Ohm</label>
+                    <input type="text" name="motor-resistance" id="R_a" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="controller-resistance">Ohm</label>
                 </td>
                 <td>Case Length:
                     <input type="text" name="cl-mm" id="cl-mm" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="cl-mm">mm</label>
@@ -266,7 +314,7 @@
                     <input type="text" name="magpoles" id="magpoles" style="width:60px; background-color: rgb(225, 221, 221);" readonly>
                 </td>
                 <td>Weight:
-                    <input type="text" name="m-weight" id="m-weight" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="m-weight">g</label>
+                    <input type="text" name="m-weight" id="m_M" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="m-weight">g</label>
                     <input type="text" name="m-weight-oz" id="m-weight-oz" style="width:60px; background-color: rgb(225, 221, 221);" readonly> <label for="m-weight-oz">oz</label>
                 </td>
             </tr>
@@ -296,7 +344,7 @@
                 <td></td>
                 <td style="width: 175px">Diameter:
                     <input type="text" name="dia-inch" value="10" style="width:60px;"> <label for="dia-inch">inch</label>
-                    <input type="text" name="dia-mm" value="254" style="width:60px;"> <label for="dia-mm">mm</label>
+                    <input type="text" name="dia-mm" id="D_p" value="254" style="width:60px;"> <label for="dia-mm">mm</label>
                 </td>
                 <td style="width: 150px">Pitch:
                     <input type="text" name="pitch-inch" value="4.7" style="width:60px;"> <label for="pitch-inch">inch</label>
@@ -312,7 +360,27 @@
                     <input type="text" name="gear-ratio" value="1" style="width:60px;">&nbsp;:&nbsp; 1
                 </td>
                 <td></td>
-                <td><input type="submit" value="Submit" style="margin-top:15px"></td>
+                <td></td>
+            </tr>
+            <tr style="white-space:pre-line">
+                <td><b>Other</b></td>
+                <td>Battery energy distribution: 
+                    <input type="text" id="B_E_a" style="width:100px;">
+                </td>
+                <td></td>
+                <td style="width: 175px"> Thrust: 
+                    <input type="text" id="T" style="width:60px;"> N </input>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td></td>
+                <td><input type="submit" value="Submit" id = "submit" style="margin-top:15px"></td>
             </tr>
         </table>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous" ></script>
