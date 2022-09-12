@@ -1,8 +1,3 @@
-
-#include "UserService.hpp"
-#include <exception>
-#include <iostream>
-
 oatpp::Object<ParameterSetDto> UserService::compute(const oatpp::Object<ParameterSetDto>& dto) {
   try {
     std::cout << "parameterset  [ ";
@@ -47,28 +42,6 @@ oatpp::Object<ParameterSetDto> UserService::compute(const oatpp::Object<Paramete
     std::cout << dto->q << " Q ";
     std::cout << dto->z << " Z ";
     std::cout << dto->c << " C"
-              << " ] " << std::endl;
-  } catch (const std::exception& e) {
-    std::cerr << e.what() << std::endl;
-  }
-  return dto;
-}
-oatpp::Object<ParameterSetV1Dto> UserService::computeV1(const oatpp::Object<ParameterSetV1Dto>& dto) {
-  try {
-    std::cout << "parameterset  [ ";
-    std::cout << dto->b_s << " Battery charge state ";
-    std::cout << dto->b_c << " Battery discharge state ";
-    std::cout << dto->n_b << " No.Of Batteries ";
-    std::cout << dto->e_c << " Energy capacity of ne cell";
-    std::cout << dto->t_m << " Thrust per motor ";
-    std::cout << dto->nm << " No.Of Motors";
-    std::cout << dto->imax << " max Controller current";
-    std::cout << dto->wm << " weight of motor ";
-    std::cout << dto->wc << " weight of one controller ";
-    std::cout << dto->wb << " weight of one battery ";
-    std::cout << dto->wf<< " weight of frame";
-    std::cout << dto->nc << " no.of controllers";
-    
               << " ] " << std::endl;
   } catch (const std::exception& e) {
     std::cerr << e.what() << std::endl;
