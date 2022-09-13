@@ -1,4 +1,3 @@
-
 #include "UserService.hpp"
 #include <exception>
 #include <iostream>
@@ -53,7 +52,8 @@ oatpp::Object<ParameterSetDto> UserService::compute(const oatpp::Object<Paramete
   }
   return dto;
 }
-oatpp::Object<ParameterSetV1Dto> UserService::computeV1(const oatpp::Object<ParameterSetV1Dto>& dto) {
+
+oatpp::Object<ParameterSet2Dto> UserService::compute2(const oatpp::Object<ParameterSet2Dto>& dto) {
   try {
     std::cout << "parameterset  [ ";
     std::cout << dto->b_s << " Battery charge state ";
@@ -68,8 +68,7 @@ oatpp::Object<ParameterSetV1Dto> UserService::computeV1(const oatpp::Object<Para
     std::cout << dto->wb << " weight of one battery ";
     std::cout << dto->wf<< " weight of frame";
     std::cout << dto->nc << " no.of controllers";
-    
-              << " ] " << std::endl;
+    std::cout << " ] " << std::endl;
   } catch (const std::exception& e) {
     std::cerr << e.what() << std::endl;
   }

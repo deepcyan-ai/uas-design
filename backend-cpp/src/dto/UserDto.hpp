@@ -67,6 +67,24 @@ class ParameterSetDto : public oatpp::DTO {
   DTO_FIELD(Float32, c, "C");
 };
 
+class ParameterSet2Dto : public oatpp::DTO {
+  DTO_INIT(ParameterSet2Dto, DTO)
+
+  // DTO_FIELD(Float32, b_e_a, "B_E_a");
+  DTO_FIELD(Float32, b_s, "B_s");
+  DTO_FIELD(Float32, b_c, "B_c");
+  DTO_FIELD(Float32, n_b, "N_b");
+  DTO_FIELD(Float32, e_c, "E_c");
+  DTO_FIELD(Float32, t_m, "T_m");
+  DTO_FIELD(Float32, nm, "N_m");
+  DTO_FIELD(Float32, imax, "I_max");
+  DTO_FIELD(Float32, wm, "W_m");
+  DTO_FIELD(Float32, wc, "W_c");
+  DTO_FIELD(Float32, wb, "W_b");
+  DTO_FIELD(Float32, wf, "W_f");
+  DTO_FIELD(Float32, nc, "N_c");
+};
+
 #include OATPP_CODEGEN_END(DTO)
 
 #endif /* UserDto_hpp */

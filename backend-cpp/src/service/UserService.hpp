@@ -17,6 +17,7 @@ class UserService {
   OATPP_COMPONENT(std::shared_ptr<UserDb>, m_database);  // Inject database component
  public:
   oatpp::Object<ParameterSetDto> compute(const oatpp::Object<ParameterSetDto>& dto);
+  oatpp::Object<ParameterSet2Dto> compute2(const oatpp::Object<ParameterSet2Dto>& dto);
   oatpp::Object<UserDto> createUser(const oatpp::Object<UserDto>& dto);
   oatpp::Object<UserDto> updateUser(const oatpp::Object<UserDto>& dto);
   oatpp::Object<UserDto> getUserById(const oatpp::Int32& id, const oatpp::provider::ResourceHandle<oatpp::orm::Connection>& connection = nullptr);
