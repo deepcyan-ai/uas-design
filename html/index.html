@@ -12,98 +12,101 @@
 			// import SwaggerPetstore from 'swagger_petstore';
 
 			let apiInstance = new apiBundle.DefaultApi();
-			let ps = new apiBundle.ParameterSetDto(); // ParameterSet | set of parameters
+			let ps2 = new apiBundle.ParameterSet2Dto(); // ParameterSet | set of parameters
+            let ps1 = new apiBundle.ParameterSetDto(); // ParameterSet from eCalc
+            
+			ps1.B_E_a = document.getElementById("model-weight"); // model weight including drive in grams
+			ps1.B_I_0 = document.getElementById("rotors-number"); // number of rotors
+			ps1.B_K_V = document.getElementById("rotorsconfig"); // configuration of rotors: "flat" or "coaxial"
+			ps1.B_P___M = document.getElementById("frame-size"); // size of the frame in mm
+			ps1.B_R_A = document.getElementById("tiltlimit"); // tilt limit in degrees, 0 = "no limit"
+			ps1.C_D = document.getElementById("field-elevation"); // field elevation (meters above sea level)
+			ps1.C_L = document.getElementById("air-temp"); // air temperature in celsius
+			ps1.C_dcs = document.getElementById("pressure"); // air pressure in hPa
+			ps1.C_L_max = document.getElementById("batterytype"); // battery model; currently not specified
+			ps1.E_B = document.getElementById("batterycharge"); // battery charge state: "normal", "full", "low"
+			ps1.g = document.getElementById("s"); // S configuration of battery 
+			ps1.K_V = document.getElementById("p"); // P configuration of battery
+			ps1.I_in = document.getElementById("E_B"); // total cell capacity
+			ps1.I_0 = document.getElementById("discharge"); // max. discharge of the battery in %
+			ps1.m_B = document.getElementById("B_R_A"); // battery resistance in Ohms
+			ps1.m_M = document.getElementById("voltage"); // battery voltage in (you guessed it!) volts
+			ps1.M_tip = document.getElementById("c-cont"); // continuous c rate of battery
+			ps1.m_total = document.getElementById("c-max"); // max c rate of battery
+			ps1.m_0 = document.getElementById("m_B"); // weight of the battery in grams
+			ps1.P_in = document.getElementById("controllertype"); // model of controller; currently not specified
+			ps1.P_out = document.getElementById("a-cont"); // continuous current in the controller
+			ps1.p_out___max = document.getElementById("a-max"); // max current in the controller
+			ps1.R_p = document.getElementById("controller-resistance"); // controller resistance in Ohms
+			ps1.R_a = document.getElementById("c-weight"); // weight of the controller in grams
+			ps1.r = document.getElementById("V_in"); // driver (controller) input voltage
+			ps1.S_w = document.getElementById("current-drain"); // current drain on the system by accessories in amperes
+			ps1.T = document.getElementById("a-weight"); // total weight of accessories in grams
+			ps1.tcs = document.getElementById("motor-manufacturer"); // motor manufacturer
+			ps1.V_F = document.getElementById("motor-type"); // model of motor; currently not specified
+			ps1.V_in = document.getElementById("cooling"); // motor cooling quality: "Excellent", "good", "medium", "poor", "very poor"
+			ps1.V_l = document.getElementById("K_V"); // motor KV in rpm/V
+			ps1.V_st = document.getElementById("I_0"); // no-load current of battery in amperes
+			ps1.W_a = document.getElementById("limit"); // limit (up to 15s) of the motor
+			ps1.n_D = document.getElementById("R_a"); // motor resistance in Ohms
+			ps1.n_P = document.getElementById("cl-mm"); // case length of motor in mm
+			ps1.n_P___ideal = document.getElementById("magpoles"); // number of magnetic poles of the motor 
+			ps1.n_S = document.getElementById("m_M"); // weight of the motor in grams
+			ps1.p_a = document.getElementById("propeller-type"); // propeller model
+			ps1.Q = document.getElementById("yoke-twist"); // yoke twist in degrees (has to be parsed as values range from negative to positive)
+			ps1.Z = document.getElementById("D_p"); // diameter of propeller in mm
+			ps1.C = document.getElementById("pitch-mm"); // pitch of the propeller in mm
+            // NEEDS TO BE ADDED: # of blades 
+            // NEEDS TO BE ADDED: PConst
+            // NEEDS TO BE ADDED: TConst
+            // NEEDS TO BE ADDED: Gear ratio (x:1)
 
-			ps.B_E_a = 0.0;
-			ps.B_I_0 = 0.0;
-			ps.B_K_V = 0.0;
-			ps.B_P___M = 0.0;
-			ps.B_R_A = 0.0;
-			ps.C_D = 0.0;
-			ps.C_L = 0.0;
-			ps.C_dcs = 0.0;
-			ps.C_L_max = 0.0;
-			ps.E_B = 0.0;
-			ps.g = 0.0;
-			ps.K_V = 0.0;
-			ps.I_in = 0.0;
-			ps.I_0 = 0.0;
-			ps.m_B = 0.0;
-			ps.m_M = 0.0;
-			ps.M_tip = 0.0;
-			ps.m_total = 0.0;
-			ps.m_0 = 0.0;
-			ps.P_in = 0.0;
-			ps.P_out = 0.0;
-			ps.p_out___max = 0.0;
-			ps.R_p = 0.0;
-			ps.R_a = 0.0;
-			ps.r = 0.0;
-			ps.S_w = 0.0;
-			ps.T = 0.0;
-			ps.tcs = 0.0;
-			ps.V_F = 0.0;
-			ps.V_in = 0.0;
-			ps.V_l = 0.0;
-			ps.V_st = 0.0;
-			ps.W_a = 0.0;
-			ps.n_D = 0.0;
-			ps.n_P = 0.0;
-			ps.n_P___ideal = 0.0;
-			ps.n_S = 0.0;
-			ps.p_a = 0.0;
-			ps.Q = 0.0;
-			ps.Z = 0.0;
-			ps.C = 0.0;
-
-            function values() {
-                ps.B_E_a = document.getElementById("B_E_a");
-                ps.B_I_0 = document.getElementById("");
-                ps.B_K_V = document.getElementById("");
-                ps.B_P___M = document.getElementById("");
-                ps.B_R_A = document.getElementById("B_R_A");
-                ps.C_D = document.getElementById("");
-                ps.C_L = document.getElementById("");
-                ps.C_dcs = document.getElementById("");
-                ps.C_L_max = document.getElementById("");
-                ps.E_B = document.getElementById("E_B");
-                ps.g = 9.807;
-                ps.K_V = document.getElementById("K_V");
-                ps.I_in = document.getElementById("I_in");
-                ps.I_0 = document.getElementById("I_0");
-                ps.m_B = document.getElementById("m_B");
-                ps.m_M = document.getElementById("m_M");
-                ps.M_tip = document.getElementById("");
-                ps.m_total = document.getElementById("");
-                ps.m_0 = document.getElementById("");
-                ps.P_in = /* parseInt(document.getElementById("voltage")) * parseInt(document.getElementById("c-cont"))/*/ 0.0;
-                ps.P_out = document.getElementById("");
-                ps.p_out___max = document.getElementById("limit");
-                ps.R_p = parseInt(document.getElementById("D_p")) / 2.0;
-                ps.R_a = document.getElementById("R_a");
-                ps.r = document.getElementById("");
-                ps.S_w = document.getElementById("");
-                ps.T = document.getElementById("T");
-                ps.tcs = document.getElementById("");
-                ps.V_F = document.getElementById("");
-                ps.V_in = document.getElementById("V_in");
-                ps.V_l = document.getElementById("");
-                ps.V_st = document.getElementById("");
-                ps.W_a = document.getElementById("");
-                ps.n_D = document.getElementById("");
-                ps.n_P = document.getElementById("");
-                ps.n_P___ideal = document.getElementById("");
-                ps.n_S = document.getElementById("");
-                ps.p_a = document.getElementById("");
-                ps.Q = document.getElementById("");
-                ps.Z = document.getElementById("");
-                ps.C = document.getElementById("");
-            }
+            ps2.B_E_a = document.getElementById("B_E_a");
+            ps2.B_I_0 = document.getElementById("");
+            ps2.B_K_V = document.getElementById("");
+            ps2.B_P___M = document.getElementById("");
+            ps2.B_R_A = document.getElementById("B_R_A");
+            ps2.C_D = document.getElementById("");
+            ps2.C_L = document.getElementById("");
+            ps2.C_dcs = document.getElementById("");
+            ps2.C_L_max = document.getElementById("");
+            ps2.E_B = document.getElementById("E_B");
+            ps2.g = 9.807;
+            ps2.K_V = document.getElementById("K_V");
+            ps2.I_in = document.getElementById("I_in");
+            ps2.I_0 = document.getElementById("I_0");
+            ps2.m_B = document.getElementById("m_B");
+            ps2.m_M = document.getElementById("m_M");
+            ps2.M_tip = document.getElementById("");
+            ps2.m_total = document.getElementById("");
+            ps2.m_0 = document.getElementById("");
+            ps2.P_in = /* parseInt(document.getElementById("voltage")) * parseInt(document.getElementById("c-cont"))/*/ 0.0;
+            ps2.P_out = document.getElementById("");
+            ps2.p_out___max = document.getElementById("limit");
+            ps2.R_p = parseInt(document.getElementById("D_p")) / 2.0;
+            ps2.R_a = document.getElementById("R_a");
+            ps2.r = document.getElementById("");
+            ps2.S_w = document.getElementById("");
+            ps2.T = document.getElementById("T");
+            ps2.tcs = document.getElementById("");
+            ps2.V_F = document.getElementById("");
+            ps2.V_in = document.getElementById("V_in");
+            ps2.V_l = document.getElementById("");
+            ps2.V_st = document.getElementById("");
+            ps2.W_a = document.getElementById("");
+            ps2.n_D = document.getElementById("");
+            ps2.n_P = document.getElementById("");
+            ps2.n_P___ideal = document.getElementById("");
+            ps2.n_S = document.getElementById("");
+            ps2.p_a = document.getElementById("");
+            ps2.Q = document.getElementById("");
+            ps2.Z = document.getElementById("");
+            ps2.C = document.getElementById("");
 
             submit = document.getElementById("submit");
             subtmit.addEventListener('click', values);
 
-			apiInstance.compute(ps, (error, data, response) => {
+			apiInstance.compute(ps2, (error, data, response) => {
 				if (error) {
 					console.error(error);
 				} else {
@@ -136,19 +139,19 @@
                 </td>
                 <td></td>
                 <td># of Rotors:
-                    <input type="text" name="rotors-number" value="4" style="width:100px" id="name">
-                    <select name="rotorsconfig">
+                    <input type="text" name="rotors-number" value="4" style="width:100px" id="rotors-number">
+                    <select id="rotorsconfig">
                         <option value="flat">flat</option>
                         <option value="coaxial">coaxial</option>
-                    </select>
+                    </select> 
                 </td>
                 <td>Frame Size:
-                    <input type="text" value="400" name="frame-size" style="width:100px"> <label for="frame-size">mm</label>
+                    <input type="text" value="400" id="frame-size" style="width:100px"> <label for="frame-size">mm</label>
                     <input type="text" value="15.75" name="frame-size-inch" style="width:100px"> <label for="frame-size-inch">inch</label>
                 </td>
                 <td>FCU Tilt Limit:
-                    <select name="tiltlimit">
-                        <option value="nolimit">no limit</option>
+                    <select id="tiltlimit">
+                        <option value="0">no limit</option>
                         <option value="10">10&#176</option>
                         <option value="20">20&#176</option>
                         <option value="25">25&#176</option>
@@ -167,15 +170,15 @@
                 </td>
                 <td></td>
                 <td>Field Elevation:
-                    <input type="text" value="500" name="field-elevation" style="width:70px"> <label for="field-elevation">m.ASL</label>
+                    <input type="text" value="500" id="field-elevation" style="width:70px"> <label for="field-elevation">m.ASL</label>
                     <input type="text" value="1640" name="field-elevation-feet" style="width:70px"> <label for="field-elevation-feet">ft.ASL</label>
                 </td>
                 <td style="width: 120px">Air Temperature:
-                    <input type="text" value="25" name="air-temp" style="width:50px"> <label for="air-temp">&#176C</label>
+                    <input type="text" value="25" id="air-temp" style="width:50px"> <label for="air-temp">&#176C</label>
                     <input type="text" value="77" name="air-temp-fahrenheit" style="width:50px"> <label for="air-temp-fahrenheit">&#176F</label>
                 </td>
                 <td>Pressure (QNH):
-                    <input type="text" value="1013" name="pressure" style="width:100px"> <label for="pressure">hPa</label>
+                    <input type="text" value="1013" id="pressure" style="width:100px"> <label for="pressure">hPa</label>
                     <input type="text" value="29.91" name="pressure-alt" style="width:100px"> <label for="pressure-alt">inHg</label>
                 </td>
             </tr>
@@ -187,7 +190,7 @@
                         <option value="type1" id="b-1">Battery 1</option>
                         <option value="type2" id="b-2">Battery 2</option>
                         <option value="type3" id="b-3">Battery 3</option>
-                    </select> - <select name="batterycharge">
+                    </select> - <select id="batterycharge">
                         <option value="full">full</option>
                         <option value="normal" selected>normal</option>
                         <option value="low">low</option>
@@ -195,14 +198,14 @@
                 </td>
                 <td></td>
                 <td style="width: 175px">Configuration:
-                    <input type="text" value="3" name="s" style="width:25px"> <label for="s">S</label> <input type="text" value="1" id="p" name = "p" style="width:60px"> <label for="p">P</label>
+                    <input type="text" value="3" id="s" style="width:25px"> <label for="s">S</label> <input type="text" value="1" id="p" name = "p" style="width:60px"> <label for="p">P</label>
                 </td>
                 <td style="width: 175px">Cell Capacity:
                     <input type="text" name="cell-capacity" id="cell-capacity" style="width:70px; background-color: rgb(225, 221, 221);" readonly><label for="cell-capacity">&nbsp;mAh</label>
                     <input type="text" name="cell-capacity-total" id="E_B" style="width:70px; background-color: rgb(225, 221, 221);" readonly> <label for="cell-capacity-total">mAh total</label>
                 </td>
                 <td>Max. Discharge:
-                    <select name="discharge">
+                    <select id="discharge">
                         <option value="10">10%</option>
                         <option value="15">15%</option>
                         <option value="20">20%</option>
@@ -266,7 +269,7 @@
                 </td>
                 <td><b>Accessories</b></td>
                 <td>Current drain:
-                    <input type="text" value="0" name="current-drain" style="width:60px;"> <label for="current-drain">A</label>
+                    <input type="text" value="0" id="current-drain" style="width:60px;"> <label for="current-drain">A</label>
                 </td>
                 <td>Weight:
                     <input type="text" name="a-weight" value="0" style="width:60px;"> <label for="a-weight">g</label>
@@ -276,16 +279,16 @@
             <tr style="white-space:pre-line">
                 <td><b>Motor</b></td>
                 <td>Manufacturer - Type (Kv) - Cooling:
-                    <select name="motor-manufacturer" onchange="motorfill(this);">
+                    <select id="motor-manufacturer" onchange="motorfill(this);">
                         <option value="" selected hidden disabled>Select motor manufacturer...</option>
                         <option value="manu-1">Type1</option>
                         <option value="manu-2">Type2</option>
                         <option value="manu-3">Type3</option>
-                    </select> - <select name="motor-type">
+                    </select> - <select id="motor-type">
                         <option value="" selected hidden disabled>Select type...</option>
                         <option value="manu-type1"></option>
                     </select>
-                    <select name="cooling">
+                    <select id="cooling">
                         <option value="excellent">Excellent</option>
                         <option value="good" selected>Good</option>
                         <option value="medium">Medium</option>
@@ -343,12 +346,12 @@
                 </td>
                 <td></td>
                 <td style="width: 175px">Diameter:
-                    <input type="text" name="dia-inch" value="10" style="width:60px;"> <label for="dia-inch">inch</label>
-                    <input type="text" name="dia-mm" id="D_p" value="254" style="width:60px;"> <label for="dia-mm">mm</label>
+                    <input type="text" name="diameter-inch" value="10" style="width:60px;"> <label for="dia-inch">inch</label>
+                    <input type="text" id="diameter" id="D_p" value="254" style="width:60px;"> <label for="dia-mm">mm</label>
                 </td>
                 <td style="width: 150px">Pitch:
                     <input type="text" name="pitch-inch" value="4.7" style="width:60px;"> <label for="pitch-inch">inch</label>
-                    <input type="text" name="pitch-mm" value="119" style="width:60px;"> <label for="pitch-mm">mm</label>
+                    <input type="text" name="pitch-mm" id="pitch-mm" value="119" style="width:60px;"> <label for="pitch-mm">mm</label>
                 </td>
                 <td># Blades:
                     <input type="text" name="no-blades" value="2" style="width:60px;">
