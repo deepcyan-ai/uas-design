@@ -20,16 +20,16 @@ class SwaggerComponent {
     oatpp::swagger::DocumentInfo::Builder builder;
 
     builder
-        .setTitle("User entity service")
-        .setDescription("CRUD API Example project with swagger docs")
+        .setTitle("UAS Design service")
+        .setDescription("Jelps you design a drone from scratch")
         .setVersion("1.0")
-        .setContactName("Ivan Ovsyanochka")
-        .setContactUrl("https://oatpp.io/")
+        .setContactName("Sayandeep Purkayasth")
+        .setContactUrl("https://deepcy.io/")
 
         .setLicenseName("Apache License, Version 2.0")
         .setLicenseUrl("http://www.apache.org/licenses/LICENSE-2.0")
 
-        .addServer("http://solverra.ddns.net:8000", "server on localhost");
+        .addServer("http://localhost:8000", "server on localhost");
 
     return builder.build();
   }());
