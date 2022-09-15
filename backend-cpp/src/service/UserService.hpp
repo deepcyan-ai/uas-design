@@ -5,7 +5,6 @@
 #include "db/UserDb.hpp"
 #include "dto/PageDto.hpp"
 #include "dto/StatusDto.hpp"
-
 #include "oatpp/core/macro/component.hpp"
 #include "oatpp/web/protocol/http/Http.hpp"
 
@@ -16,7 +15,7 @@ class UserService {
  private:
   OATPP_COMPONENT(std::shared_ptr<UserDb>, m_database);  // Inject database component
  public:
-  oatpp::Object<ParameterSetDto> compute(const oatpp::Object<ParameterSetDto>& dto);
+  oatpp::Object<ComputeResponseDto> compute(const oatpp::Object<ParameterSetDto>& dto);
   oatpp::Object<ParameterSet2Dto> compute2(const oatpp::Object<ParameterSet2Dto>& dto);
   oatpp::Object<UserDto> createUser(const oatpp::Object<UserDto>& dto);
   oatpp::Object<UserDto> updateUser(const oatpp::Object<UserDto>& dto);

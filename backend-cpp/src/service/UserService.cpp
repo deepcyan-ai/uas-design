@@ -1,8 +1,69 @@
 #include "UserService.hpp"
+
 #include <exception>
 #include <iostream>
 
-oatpp::Object<ParameterSetDto> UserService::compute(const oatpp::Object<ParameterSetDto>& dto) {
+float iavg(int mtow, float nm, float imax, float t)  // Function to calculate Average Controller Current
+{
+  float Multi = (nm * mtow * imax);
+  float iavg = Multi / t;
+  return iavg;
+}
+
+float ebattery(float nb, float ec)  // To calculate Battery Energy Capacity
+{
+  float eb = (nb * ec);
+  return (eb);
+}
+
+float Endurance(float bs, float bc, float nb, float ec, float mtow, float nm, float imax, float t) {
+  float copy1 = ebattery(nb, ec);
+  float copy2 = iavg(mtow, nm, imax, t);
+  float MULTI = (bs * bc * copy1);
+  float E = (MULTI / copy2);
+  return E;
+}
+
+float Model(float nm, float wmotor, float nc, float wc, float nb, float wb, float wf)  // To Calculate the Model weight of the drone
+{
+  float wmodel = ((nm * wmotor) + (nc * wc) + (nb * wb) + wf);
+  return wmodel;
+}
+
+oatpp::Object<ComputeResponseDto> UserService::compute(const oatpp::Object<ParameterSetDto>& dto) {
+  auto rdto = ComputeResponseDto::createShared();
+  try {
+    std::cout << "parameterset  [ ";
+    std::cout << dto->b_s << " Battery charge state ";
+    std::cout << dto->b_c << " Battery discharge state ";
+    std::cout << dto->n_b << " No.Of Batteries ";
+    std::cout << dto->e_c << " Energy capacity of ne cell";
+    std::cout << dto->t_m << " Thrust per motor ";
+    std::cout << dto->nm << " No.Of Motors";
+    std::cout << dto->imax << " max Controller current";
+    std::cout << dto->wm << " weight of motor ";
+    std::cout << dto->wc << " weight of one controller ";
+    std::cout << dto->wb << " weight of one battery ";
+    std::cout << dto->wf << " weight of frame";
+    std::cout << dto->nc << " no.of controllers";
+    std::cout << " ] " << std::endl;
+
+    //
+    int mtow = (dto->t_m * (dto->nm - 1));
+    iavg(mtow, dto->nm, dto->imax, dto->t_m);
+    ebattery(dto->n_b, dto->e_c);
+    //
+    rdto->mtow = mtow;
+    rdto->endurance = Endurance(dto->b_s, dto->b_s, dto->n_b, dto->e_c, mtow, dto->nm, dto->imax, dto->t_m);
+    rdto->wm = Model(dto->nm, dto->wm, dto->nc, dto->wc, dto->n_b, dto->wb, dto->wf);
+    rdto->valid = true;
+  } catch (const std::exception& e) {
+    std::cerr << e.what() << std::endl;
+  }
+  return rdto;
+}
+
+oatpp::Object<ParameterSet2Dto> UserService::compute2(const oatpp::Object<ParameterSet2Dto>& dto) {
   try {
     std::cout << "parameterset  [ ";
     std::cout << dto->b_e_a << " B_E_a ";
@@ -47,28 +108,6 @@ oatpp::Object<ParameterSetDto> UserService::compute(const oatpp::Object<Paramete
     std::cout << dto->z << " Z ";
     std::cout << dto->c << " C"
               << " ] " << std::endl;
-  } catch (const std::exception& e) {
-    std::cerr << e.what() << std::endl;
-  }
-  return dto;
-}
-
-oatpp::Object<ParameterSet2Dto> UserService::compute2(const oatpp::Object<ParameterSet2Dto>& dto) {
-  try {
-    std::cout << "parameterset  [ ";
-    std::cout << dto->b_s << " Battery charge state ";
-    std::cout << dto->b_c << " Battery discharge state ";
-    std::cout << dto->n_b << " No.Of Batteries ";
-    std::cout << dto->e_c << " Energy capacity of ne cell";
-    std::cout << dto->t_m << " Thrust per motor ";
-    std::cout << dto->nm << " No.Of Motors";
-    std::cout << dto->imax << " max Controller current";
-    std::cout << dto->wm << " weight of motor ";
-    std::cout << dto->wc << " weight of one controller ";
-    std::cout << dto->wb << " weight of one battery ";
-    std::cout << dto->wf<< " weight of frame";
-    std::cout << dto->nc << " no.of controllers";
-    std::cout << " ] " << std::endl;
   } catch (const std::exception& e) {
     std::cerr << e.what() << std::endl;
   }

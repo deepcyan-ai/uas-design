@@ -2,11 +2,10 @@
 #ifndef UserController_hpp
 #define UserController_hpp
 
-#include "service/UserService.hpp"
-
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/parser/json/mapping/ObjectMapper.hpp"
 #include "oatpp/web/server/api/ApiController.hpp"
+#include "service/UserService.hpp"
 
 #include OATPP_CODEGEN_BEGIN(ApiController)  //<- Begin Codegen
 
@@ -32,7 +31,7 @@ class UserController : public oatpp::web::server::api::ApiController {
 
     info->addConsumes<Object<ParameterSetDto>>("application/json");
 
-    info->addResponse<Object<ParameterSetDto>>(Status::CODE_200, "application/json");
+    info->addResponse<Object<ComputeResponseDto>>(Status::CODE_200, "application/json");
     info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
     info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
   }
@@ -45,9 +44,9 @@ class UserController : public oatpp::web::server::api::ApiController {
   ENDPOINT_INFO(compute2) {
     info->summary = "Compute V2";
 
-    info->addConsumes<Object<ParameterSetDto>>("application/json");
+    info->addConsumes<Object<ParameterSet2Dto>>("application/json");
 
-    info->addResponse<Object<ParameterSetDto>>(Status::CODE_200, "application/json");
+    info->addResponse<Object<ParameterSet2Dto>>(Status::CODE_200, "application/json");
     info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
     info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
   }

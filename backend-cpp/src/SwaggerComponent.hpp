@@ -29,7 +29,7 @@ class SwaggerComponent {
         .setLicenseName("Apache License, Version 2.0")
         .setLicenseUrl("http://www.apache.org/licenses/LICENSE-2.0")
 
-        .addServer("http://localhost:8001", "server on localhost");
+        .addServer("http://solverra.ddns.net:8000", "server on localhost");
 
     return builder.build();
   }());
